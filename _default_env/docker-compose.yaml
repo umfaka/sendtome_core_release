@@ -1,0 +1,41 @@
+version: "3"
+services:
+  sendtome_core:
+    image:  annona/sendtome_core:latest
+    container_name: sendtome_core
+    restart: always
+    volumes:
+      - ./conf:/app/conf
+      - ./.env:/app/.env
+      - ./upload:/app/upload
+    environment:
+      #- TZ=${TZ}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - SERVER_GIN_RUNMODE=${SERVER_GIN_RUNMODE}
+      - SERVER_PORT=${SERVER_PORT}
+      - SERVER_URL=${SERVER_URL}
+
+      - BOT_TELEGRAM_TOKEN=${BOT_TELEGRAM_TOKEN}
+      - BOT_TELEGRAM_WEBHOOK_URL=${BOT_TELEGRAM_WEBHOOK_URL}
+      - BOT_TELEGRAM_API_PROXY_URL=${BOT_TELEGRAM_API_PROXY_URL}
+      - BOT_MANAGER_ID=${BOT_MANAGER_ID}
+
+      - SERVER_DB_REDIS_ADDRESS=${SERVER_DB_REDIS_ADDRESS}
+      - SERVER_DB_REDIS_PASSWORD=${SERVER_DB_REDIS_PASSWORD}
+      - SERVER_DB_REDIS_DB=${SERVER_DB_REDIS_DB}
+      - SERVER_DB_TYPE=${SERVER_DB_TYPE}
+      - SERVER_DB_HOST=${SERVER_DB_HOST}
+      - SERVER_DB_PORT=${SERVER_DB_PORT}
+      - SERVER_DB_ADDRESS=${SERVER_DB_ADDRESS}
+      - SERVER_DB_TABLE_PREFIX=${SERVER_DB_TABLE_PREFIX}
+      - SERVER_DB_USERNAME=${SERVER_DB_USERNAME}
+      - SERVER_DB_PASSWORD=${SERVER_DB_PASSWORD}
+      - SERVER_DB_NAME=${SERVER_DB_NAME}
+      - CORE_API_URL=${CORE_API_URL}
+
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    # depends_on:
+    #   - db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
