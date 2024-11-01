@@ -5,9 +5,9 @@ services:
     container_name: sendtome_core
     restart: always
     volumes:
-      - ./conf:/app/conf
+      #- ./conf:/app/conf
       - ./.env:/app/.env
-      - ./upload:/app/upload
+      #- ./upload:/app/upload
     environment:
       #- TZ=${TZ}
       - LOG_LEVEL=${LOG_LEVEL}
@@ -26,7 +26,6 @@ services:
       - SERVER_DB_TYPE=${SERVER_DB_TYPE}
       - SERVER_DB_HOST=${SERVER_DB_HOST}
       - SERVER_DB_PORT=${SERVER_DB_PORT}
-      - SERVER_DB_ADDRESS=${SERVER_DB_ADDRESS}
       - SERVER_DB_TABLE_PREFIX=${SERVER_DB_TABLE_PREFIX}
       - SERVER_DB_USERNAME=${SERVER_DB_USERNAME}
       - SERVER_DB_PASSWORD=${SERVER_DB_PASSWORD}
